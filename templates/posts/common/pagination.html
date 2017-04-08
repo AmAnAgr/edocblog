@@ -1,0 +1,32 @@
+			<!-- Pagination -->
+			{% if posts.count > 5 %}
+			<div class="container">
+							<nav class="pagination add-bottom">
+
+		 	{% if posts.has_previous %}
+               <span class="page-numbers prev inactive">			       		
+				      <a href="?page={{ posts.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+				        prev
+				      </a>
+	    		</span>				      
+			{% endif %}
+
+			{% for page in posts.paginator.page_range %}
+
+   	        <a href="?page={{ page }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" 
+   	        class="page-numbers {% if page == posts.number %}current{% endif %}">
+   	        {{ page }}
+   	        </a>
+
+     		{% endfor %}
+
+        	{% if posts.has_next %}
+   	         <a href="?page={{ posts.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="page-numbers next">Next</a>
+
+		     </nav>
+		    {% endif %}
+			</div>
+
+			{% endif %}
+
+		    <!--/ Pagination -->

@@ -1,0 +1,58 @@
+
+{% extends 'posts/index.html' %}
+
+    {% block content %}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+   			<article class="entry">
+
+					<header class="entry-header">
+
+						<h2 class="entry-title">
+							{{ post.title }}
+						
+						</h2> 	
+						<div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>			
+
+				
+						<div class="entry-meta">
+							<ul>
+								<li>{{ post.timestamp }}</li>
+								<span class="meta-sep">&bull;</span>							
+								<li>
+									<a href="#" title="" rel="category tag">trial</a>,
+									<a href="#" title="" rel="category tag">try</a>  
+								</li>
+								<span class="meta-sep">&bull;</span>
+								<li>Aman</li>
+							</ul>
+						</div> 
+				 
+					</header> 
+				
+                     {% if post.image %}
+                     <div class="entry-content-media">
+                        <div class="post-thumb">
+                           <img src="{{ post.image.url }}">
+                        </div> 
+                     </div>				
+                     {% endif %}	
+
+					<div class="entry-content markdown-content">
+					 
+              {{ post.markdown }}
+
+          </div>
+
+				</article>
+
+<div class="fb-comments"></div>
+
+    {% endblock content %}
